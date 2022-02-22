@@ -32,7 +32,6 @@ class WallServiceTest {
             5,
             5
         )
-
         val id = WallService.add(post).id
         val result = id != 0
         assertEquals(true, result)
@@ -40,8 +39,9 @@ class WallServiceTest {
 
     @Test
     fun update_ShouldBeUpdatedWithExistingId() {
+        val id = WallService.posts.last().id
         val post: Post = Post(
-            1,
+            id,
             2,
             3,
             3,
@@ -78,7 +78,7 @@ class WallServiceTest {
     @Test
     fun update_ShouldNotBeUpdatedWithNoExistingId() {
         val post: Post = Post(
-            100500,
+            1005000000,
             2,
             3,
             3,
