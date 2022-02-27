@@ -3,6 +3,14 @@ import org.junit.Test
 
 class WallServiceTest {
 
+    val photoAtt = Photo(1,2,3,4,"какой-то текст",11011101)
+    val postedPhotoAtt = PostedPhoto(1,2,"text","text2")
+    val videAtt = Video(1,2,"Тайтл","Дескрипшн",12121111)
+    val audioAtt = Audio(1,2,"Какой-то артист","Тайтл",5,12312131)
+    val docAtt = Doc(1,2,"Тайтл","урл",1231233321)
+    val attachment: Array<Attachment> = arrayOf(photoAtt,postedPhotoAtt,videAtt,audioAtt,docAtt)
+
+
     @org.junit.Test
     fun add_idShouldNotBeEqualToZero() {
 
@@ -17,11 +25,12 @@ class WallServiceTest {
             4,
             true,
             6,
-            true,
+            null,
             7,
             5,
             5,
             "test",
+            attachment,
             5,
             true,
             true,
@@ -51,11 +60,12 @@ class WallServiceTest {
             4,
             true,
             6,
-            true,
+            null,
             7,
             5,
             5,
             "test",
+            attachment,
             5,
             true,
             true,
@@ -88,11 +98,12 @@ class WallServiceTest {
             4,
             true,
             6,
-            true,
+            null,
             7,
             5,
             5,
             "test",
+            attachment,
             5,
             true,
             true,

@@ -38,6 +38,7 @@ object WallService {
                     friendsOnly = newPost.friendsOnly,
                     copyright = newPost.copyright,
                     views = newPost.views,
+                    attachments = newPost.attachments,
                     canPin = newPost.canPin,
                     canDelete = newPost.canDelete,
                     canEdit = newPost.canEdit,
