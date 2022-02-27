@@ -1,53 +1,50 @@
 object WallService {
 
     var posts = emptyArray<Post>()
-    var isUpdated: Boolean = false
-    var uniqId: Int = 0
 
     fun add(post: Post): Post {
         posts += post
-        val post = post.copy(id = createUniqId(posts))
+        val post = post.copy(id = createUniqId())
         posts.set(posts.lastIndex, post)
 
         return posts.last()
     }
 
-    fun createUniqId(posts: Array<Post>): Int {
-        uniqId = (0..1_000_000_000).random()
-        for (i in 0..posts.size - 1) {
-            if (uniqId == posts[i].id) {
-                createUniqId(posts)
-                break
-            }
-        }
+    fun createUniqId(): Int {
+
+        var uniqId: Int
+
+        do {
+            uniqId = (0..1_000_000_000).random()
+        } while (posts.any { it.id == uniqId })
         return uniqId
     }
 
 
-    fun update(post: Post): Boolean {
+    fun update(newPost: Post): Boolean {
+        var isUpdated = false
+        val newPostId = newPost.id
 
-        val newPostId = post.id
-
-        for (i in 0..posts.size - 1) {
+        for (i in posts.indices) {
             var oldPostId = posts[i].id
 
             if (newPostId == oldPostId) {
 
-                posts[i] = post.copy(
-                    text = post.text,
-                    comments = post.comments,
-                    likes = post.likes,
-                    reposts = post.reposts,
-                    friendsOnly = post.friendsOnly,
-                    copyright = post.copyright,
-                    views = post.views,
-                    canPin = post.canPin,
-                    canDelete = post.canDelete,
-                    canEdit = post.canEdit,
-                    isPinned = post.isPinned,
-                    markedAsAds = post.markedAsAds,
-                    isFavorite = post.isFavorite,
-                    donut = post.donut,
+                posts[i] = posts[i].copy(
+                    text = newPost.text,
+                    comments = newPost.comments,
+                    likes = newPost.likes,
+                    reposts = newPost.reposts,
+                    friendsOnly = newPost.friendsOnly,
+                    copyright = newPost.copyright,
+                    views = newPost.views,
+                    canPin = newPost.canPin,
+                    canDelete = newPost.canDelete,
+                    canEdit = newPost.canEdit,
+                    isPinned = newPost.isPinned,
+                    markedAsAds = newPost.markedAsAds,
+                    isFavorite = newPost.isFavorite,
+                    donut = newPost.donut,
 
                     )
                 isUpdated = true
